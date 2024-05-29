@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 
 function getComputerChoice(){
     let pick = ["rock", "paper", "scissors"];
@@ -22,31 +19,42 @@ function getHumanChoice(){
     }
 }
 
-function playRound(humanChoice, computerChoice){
-    let gameCount = 1;
-    
-    console.log(`You chose ${humanChoice} and the computer chose ${computerChoice}.`);
 
-    while(gameCount <= 5){
+function playGame(){
+    let gameCount = 0;
+   /* let humanSelection = getHumanChoice();
+    let computerSelection = getComputerChoice();*/
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound(humanChoice, computerChoice){
+
+        console.log(`You chose ${humanChoice} and the computer chose ${computerChoice}.`);
+    
         if(humanChoice == computerChoice){
             console.log("It's a tie!");
         }
         else if(humanChoice == "scissors" && computerChoice == "paper"){
             console.log("You won this round!");
+            humanScore++;
         }else if(humanChoice == "rock" && computerChoice == "scissors"){
             console.log("You won this round!");
+            humanScore++;
         }else if(humanChoice == "paper" && computerChoice == "rock"){
             console.log("You won this round!");
+            humanScore++;
         }else{
             console.log("You lost this round!");
+            computerScore++;
         }
-        ++gameCount;
+        console.log(`The score is ${humanScore} for player, and ${computerScore} for the computer!`)
+    
     }
+
+    while(gameCount < 5){
+        playRound(getHumanChoice(), getComputerChoice());
+        ++gameCount;
+    } 
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
-
-
+playGame();
